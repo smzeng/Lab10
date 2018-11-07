@@ -33,7 +33,14 @@ public class Sorting {
      */
     @SuppressWarnings("unused")
     private static int[] bubbleSort(final int[] array) {
-        return null;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] < array[i - 1]) {
+                int temp = array[i];
+                array[i] = array[i - 1];
+                array[i] = temp;
+            }
+        }
+        return array;
     }
 
     /**
@@ -55,7 +62,23 @@ public class Sorting {
      */
     @SuppressWarnings("unused")
     private static int[] mergeSort(final int[] array) {
-        return null;
+        if (array.length - 1 == 1) {
+            return array;
+        }
+        int low = 0;
+        int high = array.length - 1;
+        int mid = (low + high) / 2;
+        int[] arrayFirst = new int[array.length / 2 - 1];
+        int[] arraySecond = new int[array.length / 2 - 1];
+        for (int i = 0; i < mid + 1; i++) {
+            arrayFirst[i] = array[i];
+        }
+        for (int i = 0; i < arraySecond.length; i++) {
+            arraySecond[i] = array[i + mid];
+        }
+        int[] sortedArray1 = mergeSort(arrayFirst);
+        int[] sortedArray2 = mergeSort(arraySecond);
+        return merge(sortedArray1, sortedArray2);
     }
 
     /**
